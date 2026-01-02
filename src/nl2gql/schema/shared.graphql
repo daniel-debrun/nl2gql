@@ -1,0 +1,40 @@
+"""Calendar date, ISO 8601 (YYYY-MM-DD)."""
+scalar Date
+
+"""Levels of the factory hierarchy, coarsest first."""
+enum Level {
+  GROUP
+  REGION
+  DIVISION
+  PLANT
+  SUBAREA
+  AREA
+  LINE
+}
+
+enum Direction {
+  ASC
+  DESC
+}
+
+"""Filter on hierarchy keys. Keys are the IDs in the hierarchy table, not display names."""
+input HierarchyFilter {
+  group: ID
+  region: ID
+  division: ID
+  plant: ID
+  subarea: ID
+  area: ID
+  line: ID
+}
+
+"""Inclusive date range."""
+input TimeRange {
+  start: Date!
+  end: Date!
+}
+
+type Query {
+  """Schema version, so clients can check what they are talking to."""
+  schemaVersion: String!
+}

@@ -1,0 +1,8 @@
+services:
+  nl2gql:
+    build: .
+    image: nl2gql:0.1.0
+    ports:
+      - "8080:8080"
+    read_only: true
+    restart: unless-stopped

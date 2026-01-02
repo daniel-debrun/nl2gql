@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling>=1.21"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nl2gql"
+version = "0.1.0"
+description = "Natural language to GraphQL with a schema-derived AST and a Bayesian network. No LLM at inference."
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Daniel De Brun" }]
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.23", "graphql-core>=3.2,<3.3"]
+
+[project.urls]
+Repository = "https://github.com/daniel-debrun/nl2gql"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "hypothesis>=6.90", "ruff>=0.5"]
+crosscheck = ["pgmpy>=1.0"]
+
+[project.scripts]
+nl2gql = "nl2gql.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/nl2gql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM"]
+
+[tool.ruff.lint.per-file-ignores]
+# regex tables and report templates read better unwrapped
+"src/nl2gql/extract.py" = ["E501"]
+"src/nl2gql/timeparse.py" = ["E501"]
+"src/nl2gql/experiments.py" = ["E501"]
+"src/nl2gql/generate.py" = ["E501"]

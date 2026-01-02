@@ -1,0 +1,43 @@
+enum KpiMetric {
+  OEE
+  AVAILABILITY
+  PERFORMANCE
+  QUALITY
+  SCRAP_RATE
+  DOWNTIME_MINUTES
+}
+
+input KpiOrder {
+  metric: KpiMetric!
+  direction: Direction!
+}
+
+"""Production KPIs. Unaggregated rows are one line, one date, one shift."""
+type KpiRecord {
+  group: ID
+  region: ID
+  division: ID
+  plant: ID
+  subarea: ID
+  area: ID
+  line: ID
+  date: Date
+  shift: Int
+  oee: Float
+  availability: Float
+  performance: Float
+  quality: Float
+  scrap_rate: Float
+  downtime_minutes: Float
+}
+
+extend type Query {
+  kpis(
+    filter: HierarchyFilter
+    aggregateBy: Level
+    timeRange: TimeRange
+    shift: Int
+    orderBy: KpiOrder
+    limit: Int
+  ): [KpiRecord!]!
+}

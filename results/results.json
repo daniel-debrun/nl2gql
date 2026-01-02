@@ -1,0 +1,644 @@
+{
+  "reference_date": "2026-11-18",
+  "data": {
+    "A": {
+      "file": "A.jsonl",
+      "lines": 300,
+      "kinds": {
+        "query": 225,
+        "clarify": 45,
+        "reject": 30
+      },
+      "invalid": 0,
+      "invalid_examples": []
+    },
+    "B": {
+      "file": "B.jsonl",
+      "lines": 300,
+      "kinds": {
+        "query": 225,
+        "clarify": 45,
+        "reject": 30
+      },
+      "invalid": 0,
+      "invalid_examples": []
+    },
+    "C": {
+      "file": "C.jsonl",
+      "lines": 300,
+      "kinds": {
+        "query": 225,
+        "clarify": 45,
+        "reject": 30
+      },
+      "invalid": 0,
+      "invalid_examples": []
+    },
+    "D": {
+      "file": "D.jsonl",
+      "lines": 300,
+      "kinds": {
+        "query": 225,
+        "clarify": 45,
+        "reject": 30
+      },
+      "invalid": 0,
+      "invalid_examples": []
+    },
+    "E": {
+      "file": "E.jsonl",
+      "lines": 300,
+      "kinds": {
+        "query": 225,
+        "clarify": 45,
+        "reject": 30
+      },
+      "invalid": 0,
+      "invalid_examples": []
+    }
+  },
+  "synthetic_examples": 6000,
+  "config": {
+    "alpha": 0.5,
+    "nb_alpha": 0.5,
+    "nb_weight": 0.2,
+    "use_nb": true,
+    "use_network": true,
+    "tau_ood": 0.7,
+    "tau_ambiguous": 0.15,
+    "tau_missing": 0.3
+  },
+  "tuning_top_trials": [
+    {
+      "nb_weight": 0.2,
+      "tau_ood": 0.7,
+      "tau_ambiguous": 0.15,
+      "tau_missing": 0.3,
+      "objective": 0.9882
+    },
+    {
+      "nb_weight": 0.2,
+      "tau_ood": 0.7,
+      "tau_ambiguous": 0.15,
+      "tau_missing": 0.5,
+      "objective": 0.9882
+    },
+    {
+      "nb_weight": 0.2,
+      "tau_ood": 0.7,
+      "tau_ambiguous": 0.15,
+      "tau_missing": 0.7,
+      "objective": 0.9882
+    },
+    {
+      "nb_weight": 0.2,
+      "tau_ood": 0.7,
+      "tau_ambiguous": 0.25,
+      "tau_missing": 0.3,
+      "objective": 0.9882
+    },
+    {
+      "nb_weight": 0.2,
+      "tau_ood": 0.7,
+      "tau_ambiguous": 0.25,
+      "tau_missing": 0.5,
+      "objective": 0.9882
+    },
+    {
+      "nb_weight": 0.2,
+      "tau_ood": 0.7,
+      "tau_ambiguous": 0.25,
+      "tau_missing": 0.7,
+      "objective": 0.9882
+    },
+    {
+      "nb_weight": 0.2,
+      "tau_ood": 0.4,
+      "tau_ambiguous": 0.15,
+      "tau_missing": 0.3,
+      "objective": 0.9878
+    },
+    {
+      "nb_weight": 0.2,
+      "tau_ood": 0.4,
+      "tau_ambiguous": 0.15,
+      "tau_missing": 0.5,
+      "objective": 0.9878
+    },
+    {
+      "nb_weight": 0.2,
+      "tau_ood": 0.4,
+      "tau_ambiguous": 0.15,
+      "tau_missing": 0.7,
+      "objective": 0.9878
+    },
+    {
+      "nb_weight": 0.2,
+      "tau_ood": 0.4,
+      "tau_ambiguous": 0.25,
+      "tau_missing": 0.3,
+      "objective": 0.9878
+    }
+  ],
+  "ablation": [
+    {
+      "train": "synthetic only",
+      "system": "bayes-net + text evidence",
+      "examples": 300,
+      "decision_accuracy": 0.9867,
+      "clarify_reason_accuracy": 1.0,
+      "gold_queries": 225,
+      "exact_match": 0.9556,
+      "slot_accuracy": {
+        "subgraph": 0.9867,
+        "metric": 0.9822,
+        "query_type": 0.9822,
+        "aggregate_by": 0.9867,
+        "direction": 0.9778,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9733
+      },
+      "validity_of_emitted_queries": 1.0,
+      "emitted_queries": 222,
+      "latency_ms_median": 2.765,
+      "latency_ms_p95": 3.806,
+      "kind_confusion": {
+        "clarify->clarify": 45,
+        "query->clarify": 3,
+        "query->query": 222,
+        "reject->clarify": 1,
+        "reject->reject": 29
+      }
+    },
+    {
+      "train": "synthetic only",
+      "system": "bayes-net, no text evidence",
+      "examples": 300,
+      "decision_accuracy": 0.9833,
+      "clarify_reason_accuracy": 1.0,
+      "gold_queries": 225,
+      "exact_match": 0.9556,
+      "slot_accuracy": {
+        "subgraph": 0.9867,
+        "metric": 0.9822,
+        "query_type": 0.9822,
+        "aggregate_by": 0.9867,
+        "direction": 0.9778,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9733
+      },
+      "validity_of_emitted_queries": 1.0,
+      "emitted_queries": 222,
+      "latency_ms_median": 2.593,
+      "latency_ms_p95": 3.527,
+      "kind_confusion": {
+        "clarify->clarify": 45,
+        "query->clarify": 2,
+        "query->query": 222,
+        "query->reject": 1,
+        "reject->clarify": 2,
+        "reject->reject": 28
+      }
+    },
+    {
+      "train": "synthetic only",
+      "system": "independent per-slot",
+      "examples": 300,
+      "decision_accuracy": 0.9567,
+      "clarify_reason_accuracy": 0.8,
+      "gold_queries": 225,
+      "exact_match": 0.7378,
+      "slot_accuracy": {
+        "subgraph": 0.9867,
+        "metric": 0.9778,
+        "query_type": 0.8311,
+        "aggregate_by": 0.8356,
+        "direction": 0.9111,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9733
+      },
+      "validity_of_emitted_queries": 1.0,
+      "emitted_queries": 231,
+      "latency_ms_median": 0.499,
+      "latency_ms_p95": 0.715,
+      "kind_confusion": {
+        "clarify->clarify": 36,
+        "clarify->query": 9,
+        "query->clarify": 3,
+        "query->query": 222,
+        "reject->clarify": 1,
+        "reject->reject": 29
+      }
+    },
+    {
+      "train": "sets A+B+C+D",
+      "system": "bayes-net + text evidence",
+      "examples": 300,
+      "decision_accuracy": 0.9833,
+      "clarify_reason_accuracy": 1.0,
+      "gold_queries": 225,
+      "exact_match": 0.9156,
+      "slot_accuracy": {
+        "subgraph": 0.9733,
+        "metric": 0.9644,
+        "query_type": 0.9822,
+        "aggregate_by": 0.9556,
+        "direction": 0.9733,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9778
+      },
+      "validity_of_emitted_queries": 1.0,
+      "emitted_queries": 222,
+      "latency_ms_median": 2.886,
+      "latency_ms_p95": 4.251,
+      "kind_confusion": {
+        "clarify->clarify": 45,
+        "query->clarify": 3,
+        "query->query": 222,
+        "reject->clarify": 2,
+        "reject->reject": 28
+      }
+    },
+    {
+      "train": "sets A+B+C+D",
+      "system": "bayes-net, no text evidence",
+      "examples": 300,
+      "decision_accuracy": 0.9833,
+      "clarify_reason_accuracy": 1.0,
+      "gold_queries": 225,
+      "exact_match": 0.9289,
+      "slot_accuracy": {
+        "subgraph": 0.9867,
+        "metric": 0.9822,
+        "query_type": 0.9822,
+        "aggregate_by": 0.9556,
+        "direction": 0.9822,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9778
+      },
+      "validity_of_emitted_queries": 1.0,
+      "emitted_queries": 222,
+      "latency_ms_median": 2.675,
+      "latency_ms_p95": 3.605,
+      "kind_confusion": {
+        "clarify->clarify": 45,
+        "query->clarify": 2,
+        "query->query": 222,
+        "query->reject": 1,
+        "reject->clarify": 2,
+        "reject->reject": 28
+      }
+    },
+    {
+      "train": "sets A+B+C+D",
+      "system": "independent per-slot",
+      "examples": 300,
+      "decision_accuracy": 0.9567,
+      "clarify_reason_accuracy": 0.8,
+      "gold_queries": 225,
+      "exact_match": 0.72,
+      "slot_accuracy": {
+        "subgraph": 0.9867,
+        "metric": 0.9156,
+        "query_type": 0.8889,
+        "aggregate_by": 0.8356,
+        "direction": 0.9556,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9733
+      },
+      "validity_of_emitted_queries": 0.961,
+      "emitted_queries": 231,
+      "latency_ms_median": 0.486,
+      "latency_ms_p95": 0.726,
+      "kind_confusion": {
+        "clarify->clarify": 36,
+        "clarify->query": 9,
+        "query->clarify": 3,
+        "query->query": 222,
+        "reject->clarify": 1,
+        "reject->reject": 29
+      }
+    },
+    {
+      "train": "sets A+B+C+D + synthetic",
+      "system": "bayes-net + text evidence",
+      "examples": 300,
+      "decision_accuracy": 0.9833,
+      "clarify_reason_accuracy": 0.9778,
+      "gold_queries": 225,
+      "exact_match": 0.9556,
+      "slot_accuracy": {
+        "subgraph": 0.9867,
+        "metric": 0.9822,
+        "query_type": 0.9822,
+        "aggregate_by": 0.9867,
+        "direction": 0.9778,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9733
+      },
+      "validity_of_emitted_queries": 1.0,
+      "emitted_queries": 223,
+      "latency_ms_median": 2.677,
+      "latency_ms_p95": 3.707,
+      "kind_confusion": {
+        "clarify->clarify": 44,
+        "clarify->query": 1,
+        "query->clarify": 3,
+        "query->query": 222,
+        "reject->clarify": 1,
+        "reject->reject": 29
+      }
+    },
+    {
+      "train": "sets A+B+C+D + synthetic",
+      "system": "bayes-net, no text evidence",
+      "examples": 300,
+      "decision_accuracy": 0.9833,
+      "clarify_reason_accuracy": 1.0,
+      "gold_queries": 225,
+      "exact_match": 0.9556,
+      "slot_accuracy": {
+        "subgraph": 0.9867,
+        "metric": 0.9822,
+        "query_type": 0.9822,
+        "aggregate_by": 0.9867,
+        "direction": 0.9778,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9733
+      },
+      "validity_of_emitted_queries": 1.0,
+      "emitted_queries": 222,
+      "latency_ms_median": 2.614,
+      "latency_ms_p95": 3.595,
+      "kind_confusion": {
+        "clarify->clarify": 45,
+        "query->clarify": 2,
+        "query->query": 222,
+        "query->reject": 1,
+        "reject->clarify": 2,
+        "reject->reject": 28
+      }
+    },
+    {
+      "train": "sets A+B+C+D + synthetic",
+      "system": "independent per-slot",
+      "examples": 300,
+      "decision_accuracy": 0.9533,
+      "clarify_reason_accuracy": 0.7778,
+      "gold_queries": 225,
+      "exact_match": 0.7867,
+      "slot_accuracy": {
+        "subgraph": 0.9867,
+        "metric": 0.9822,
+        "query_type": 0.8444,
+        "aggregate_by": 0.8356,
+        "direction": 0.96,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9733
+      },
+      "validity_of_emitted_queries": 1.0,
+      "emitted_queries": 231,
+      "latency_ms_median": 0.487,
+      "latency_ms_p95": 0.708,
+      "kind_confusion": {
+        "clarify->clarify": 35,
+        "clarify->query": 9,
+        "clarify->reject": 1,
+        "query->clarify": 3,
+        "query->query": 222,
+        "reject->clarify": 1,
+        "reject->reject": 29
+      }
+    },
+    {
+      "train": "(none)",
+      "system": "rules only",
+      "examples": 300,
+      "decision_accuracy": 0.94,
+      "clarify_reason_accuracy": 1.0,
+      "gold_queries": 225,
+      "exact_match": 0.9644,
+      "slot_accuracy": {
+        "subgraph": 0.9867,
+        "metric": 0.9822,
+        "query_type": 0.9822,
+        "aggregate_by": 0.9867,
+        "direction": 0.9822,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9778
+      },
+      "validity_of_emitted_queries": 1.0,
+      "emitted_queries": 223,
+      "latency_ms_median": 0.281,
+      "latency_ms_p95": 0.43,
+      "kind_confusion": {
+        "clarify->clarify": 45,
+        "query->clarify": 3,
+        "query->query": 222,
+        "reject->clarify": 14,
+        "reject->query": 1,
+        "reject->reject": 15
+      }
+    }
+  ],
+  "leave_one_set_out": [
+    {
+      "held_out": "A",
+      "exact_match": 0.9556,
+      "decision_accuracy": 1.0
+    },
+    {
+      "held_out": "B",
+      "exact_match": 0.9867,
+      "decision_accuracy": 0.9933
+    },
+    {
+      "held_out": "C",
+      "exact_match": 0.9911,
+      "decision_accuracy": 1.0
+    },
+    {
+      "held_out": "D",
+      "exact_match": 0.9822,
+      "decision_accuracy": 0.9967
+    }
+  ],
+  "final_model": {
+    "path": "nl2gql/models/nl2gql.npz",
+    "bytes": 63380,
+    "train_examples": 7200,
+    "test": {
+      "examples": 300,
+      "decision_accuracy": 0.9833,
+      "clarify_reason_accuracy": 0.9778,
+      "gold_queries": 225,
+      "exact_match": 0.9556,
+      "slot_accuracy": {
+        "subgraph": 0.9867,
+        "metric": 0.9822,
+        "query_type": 0.9822,
+        "aggregate_by": 0.9867,
+        "direction": 0.9778,
+        "filters": 0.9867,
+        "time_range": 0.9822,
+        "shift": 0.9822,
+        "limit": 0.9733
+      },
+      "validity_of_emitted_queries": 1.0,
+      "emitted_queries": 223,
+      "latency_ms_median": 2.741,
+      "latency_ms_p95": 3.878,
+      "kind_confusion": {
+        "clarify->clarify": 44,
+        "clarify->query": 1,
+        "query->clarify": 3,
+        "query->query": 222,
+        "reject->clarify": 1,
+        "reject->reject": 29
+      }
+    }
+  },
+  "test_errors": [
+    {
+      "id": "E-0006",
+      "utterance": "Give me the 5 fastest lines by spindle speed in the Suzhou machining area this month.",
+      "wrong": {
+        "direction": {
+          "gold": "DESC",
+          "pred": "ASC"
+        }
+      }
+    },
+    {
+      "id": "E-0011",
+      "utterance": "Pull every kpi record from November 5th.",
+      "wrong": {
+        "time_range": {
+          "gold": [
+            "2026-11-05",
+            "2026-11-05"
+          ],
+          "pred": [
+            "2026-11-05",
+            "2026-11-18"
+          ]
+        }
+      }
+    },
+    {
+      "id": "E-0048",
+      "utterance": "Write me a poem about robots on the assembly line.",
+      "gold": "reject",
+      "gold_reason": "out_of_domain",
+      "pred": "clarify",
+      "pred_reason": "needs_plant"
+    },
+    {
+      "id": "E-0051",
+      "utterance": "Quality engineer here, could you pull me 8 raw kpi entries for the Puebla plant, whatever's most recent?",
+      "wrong": {
+        "metric": {
+          "gold": null,
+          "pred": "quality"
+        }
+      }
+    },
+    {
+      "id": "E-0062",
+      "utterance": "Which lines at Suzhou are racking up the most alarms?",
+      "wrong": {
+        "limit": {
+          "gold": 10,
+          "pred": 1
+        }
+      }
+    },
+    {
+      "id": "E-0088",
+      "utterance": "Which lines rank highest for performance across Acme Mobility?",
+      "wrong": {
+        "limit": {
+          "gold": 10,
+          "pred": 1
+        }
+      }
+    },
+    {
+      "id": "E-0104",
+      "utterance": "How did line 9 at Chennai perform yesterday on shift 2?",
+      "gold": "query",
+      "pred": "clarify",
+      "pred_reason": "missing_metric"
+    },
+    {
+      "id": "E-0157",
+      "utterance": "How's OEE on line 11 at Graz running on nights?",
+      "wrong": {
+        "shift": {
+          "gold": 3,
+          "pred": null
+        }
+      }
+    },
+    {
+      "id": "E-0222",
+      "utterance": "Fewest alarms by line in Chassis last month.",
+      "wrong": {
+        "query_type": {
+          "gold": "ranked",
+          "pred": "aggregate"
+        },
+        "direction": {
+          "gold": "ASC",
+          "pred": null
+        },
+        "limit": {
+          "gold": 10,
+          "pred": null
+        }
+      }
+    },
+    {
+      "id": "E-0235",
+      "utterance": "What's cycle time across the press shops in APAC been like over the last 20 days?",
+      "gold": "query",
+      "pred": "clarify",
+      "pred_reason": "needs_plant"
+    },
+    {
+      "id": "E-0254",
+      "utterance": "The 3 highest performing regions this quarter.",
+      "gold": "query",
+      "pred": "clarify",
+      "pred_reason": "missing_metric"
+    },
+    {
+      "id": "E-0289",
+      "utterance": "I need cycle time numbers for Suzhou over the last 14 days.",
+      "gold": "clarify",
+      "gold_reason": "ambiguous_metric",
+      "pred": "query",
+      "pred_reason": null
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+enum CncMetric {
+  SPINDLE_LOAD
+  SPINDLE_SPEED
+  FEED_RATE
+  TOOL_WEAR
+  CYCLE_TIME
+  ALARM_COUNT
+}
+
+input CncOrder {
+  metric: CncMetric!
+  direction: Direction!
+}
+
+"""CNC machine telemetry. Unaggregated rows are one line, one date, one shift."""
+type CncRecord {
+  group: ID
+  region: ID
+  division: ID
+  plant: ID
+  subarea: ID
+  area: ID
+  line: ID
+  date: Date
+  shift: Int
+  spindle_load: Float
+  spindle_speed: Float
+  feed_rate: Float
+  tool_wear: Float
+  cycle_time: Float
+  alarm_count: Float
+}
+
+extend type Query {
+  cnc_data(
+    filter: HierarchyFilter
+    aggregateBy: Level
+    timeRange: TimeRange
+    shift: Int
+    orderBy: CncOrder
+    limit: Int
+  ): [CncRecord!]!
+}

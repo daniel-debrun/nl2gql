@@ -1,0 +1,41 @@
+enum PressMetric {
+  TONNAGE
+  STROKE_RATE
+  DIE_TEMPERATURE
+  CYCLE_TIME
+  REJECT_COUNT
+}
+
+input PressOrder {
+  metric: PressMetric!
+  direction: Direction!
+}
+
+"""Stamping press telemetry. Unaggregated rows are one line, one date, one shift."""
+type PressRecord {
+  group: ID
+  region: ID
+  division: ID
+  plant: ID
+  subarea: ID
+  area: ID
+  line: ID
+  date: Date
+  shift: Int
+  tonnage: Float
+  stroke_rate: Float
+  die_temperature: Float
+  cycle_time: Float
+  reject_count: Float
+}
+
+extend type Query {
+  press_data(
+    filter: HierarchyFilter
+    aggregateBy: Level
+    timeRange: TimeRange
+    shift: Int
+    orderBy: PressOrder
+    limit: Int
+  ): [PressRecord!]!
+}
